@@ -56,9 +56,9 @@ public class VisualAspectOfPair : MonoBehaviour {
 
 
 
-    private Vector3 firstPosition { get { return firstObject.transform.position + firstDeviation; } }
+    public Vector3 firstPosition { get { return firstObject.transform.position + firstDeviation; } }
 
-    private Vector3 secondPosition { get { return secondObject.transform.position + secondDeviation; } }
+    public Vector3 secondPosition { get { return secondObject.transform.position + secondDeviation; } }
 
 
 
@@ -96,7 +96,9 @@ public class VisualAspectOfPair : MonoBehaviour {
                 Debug.LogWarning($"Object {caller.name} is trying to change an absolute type of connection of {name}. No action will be applied");
             break;
 
-            default:
+            case ConnectionType.On: 
+            case ConnectionType.Off:
+
                 if (newType == ConnectionType.Absolute) {
                     Debug.LogWarning($"Object {caller.name} is trying to set a relative connection to absolute type of {name}. No action will be applied");
                 } else if (newType == connectionType) {
@@ -104,6 +106,11 @@ public class VisualAspectOfPair : MonoBehaviour {
                 } else {
                     connectionType = newType;
                 }
+
+            break;
+
+            default:
+                Debug.LogError($"Unpredictable behaviour caused by {caller.name} in VisualAspectOfPair of {name}");
             break;
 
         }
