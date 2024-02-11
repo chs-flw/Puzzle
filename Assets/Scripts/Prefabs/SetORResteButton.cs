@@ -14,7 +14,7 @@ public class SetORResetButton : SingularUseButton {
     [SerializeField]
     private ButtonsFunction function;
 
-    private void Awake() {
+    private void Start() {
 
         anotherButton.OnActivated.AddListener(ChangeState);
 
