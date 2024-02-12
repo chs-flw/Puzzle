@@ -34,7 +34,7 @@ public class CanvasInterface : MonoBehaviour {
                                                                             //. .   .   |   /   .   .   .   .   .   .   .   .   .   .
                                                                             //. .   .   |  /.   .|  .   .   .   .   .   .   .   .   .
                                                                             //. .   .   | / .   .   .   .   .   .   .   .   .   .   .
-        float alpha = Vector3.Dot(upDirection,Vector3.up);                  //. .   .   |/_______|____________ directionToBeParallelTo
+        float alpha = Vector3.Dot(directionToBeParallelTo,Vector3.up);      //. .   .   |/_______|____________ directionToBeParallelTo
                                                                             //. .   .   .   .   alpha
         upDirection = (Vector3.up - alpha * directionToBeParallelTo).normalized;
 
