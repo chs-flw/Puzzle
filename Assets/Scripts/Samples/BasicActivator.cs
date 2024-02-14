@@ -27,7 +27,7 @@ public class BasicActivator : AbstractActivator {
 
     public override UnityEvent OnActivated   {
 
-        protected get {
+        get {
             return _onActivated;
         }
         
@@ -38,7 +38,7 @@ public class BasicActivator : AbstractActivator {
     }
     public override UnityEvent OnDeactivated   {
 
-        protected get {
+        get {
             return _onDeactivated;
         }
         

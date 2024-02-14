@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 
 
@@ -38,7 +39,6 @@ public class VisualAspectOfPair : MonoBehaviour {
     }
 
 
-
     [Space]
     [Header("Positions of connected objects and their deviation from origin points")]
 
@@ -72,7 +72,7 @@ public class VisualAspectOfPair : MonoBehaviour {
         switch(connectionType) {
 
             case ConnectionType.Absolute:
-                lineColor = Color.magenta;
+                lineColor = Color.blue;
             break;
             case ConnectionType.On:
                 lineColor = Color.green;
@@ -114,32 +114,6 @@ public class VisualAspectOfPair : MonoBehaviour {
             break;
 
         }
-
-    }
-
-    public VisualAspectOfPair ( ConnectionType  connectionType,
-                                GameObject      firstObject,
-                                Vector3         firstDeviation,
-                                GameObject      secondObject,
-                                Vector3         secondDeviation
-                            ) {
-
-        this.connectionType  = connectionType;
-
-        this.firstObject     = firstObject;
-        this.firstDeviation  = firstDeviation;
-
-        this.secondObject    = secondObject;
-        this.secondDeviation = secondDeviation;
-
-        lineRenderer = this.AddComponent<LineRenderer>();
-        
-        lineRenderer.material = GraphicsSettings.defaultRenderPipeline.defaultLineMaterial;
-        
-        lineRenderer.startWidth = 0.021f;
-        lineRenderer.endWidth = 0.021f;
-
-        UpdateColor();
 
     }
 

@@ -29,7 +29,7 @@ public class SetResetButtonBehaviour : AbstractButton {
 
     public override UnityEvent OnActivated { 
 
-        protected get {
+        get {
             
             return _onActivated;
 
@@ -48,7 +48,7 @@ public class SetResetButtonBehaviour : AbstractButton {
 
     public override UnityEvent OnDeactivated { 
         
-        protected get {
+        get {
             
             return _onDeactivated;
 

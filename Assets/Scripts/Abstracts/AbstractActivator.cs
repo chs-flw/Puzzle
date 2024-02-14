@@ -33,8 +33,8 @@ public abstract class AbstractActivator : MonoBehaviour, IActivator {
         get; protected set;
     }
 
-    public abstract UnityEvent OnActivated { protected get; set; }
-    public abstract UnityEvent OnDeactivated { protected get; set;}
+    public abstract UnityEvent OnActivated { get; set; }
+    public abstract UnityEvent OnDeactivated { get; set;}
 
     public abstract void Activate();
 

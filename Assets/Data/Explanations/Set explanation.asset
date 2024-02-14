@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Set explanation
   m_EditorClassIdentifier: 
   _onDeactivatedExplanation: Set
+  _onDeactivatedColor: {r: 0, g: 1, b: 0, a: 1}
   _onActivatedExplanation: Set
+  _onActivatedColor: {r: 0, g: 1, b: 0, a: 1}
   _whileActivatedExplanation: Set
+  _whileActivatedColor: {r: 0, g: 1, b: 0, a: 1}

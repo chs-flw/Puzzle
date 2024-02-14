@@ -9,10 +9,19 @@ public class SimpleExplanation : ScriptableObject {
     protected string _onDeactivatedExplanation;
 
     [SerializeField]
+    protected Color _onDeactivatedColor;
+
+    [SerializeField]
     protected string _onActivatedExplanation;
 
     [SerializeField]
+    protected Color _onActivatedColor;
+
+    [SerializeField]
     protected string _whileActivatedExplanation;
+
+    [SerializeField]
+    protected Color _whileActivatedColor;
 
     public virtual string onDeactivatedExplanation {
 
@@ -57,6 +66,54 @@ public class SimpleExplanation : ScriptableObject {
         protected set {
 
             _whileActivatedExplanation = value;
+
+        }
+
+    }
+
+    public virtual Color onActivatedColor {
+
+        get {
+
+            return _onActivatedColor;
+
+        }
+
+        protected set {
+
+            _onActivatedColor = value;
+
+        }
+
+    }
+
+    public virtual Color onDeactivatedColor {
+
+        get {
+
+            return _onDeactivatedColor;
+
+        }
+
+        protected set {
+
+            _onDeactivatedColor = value;
+
+        }
+
+    }
+
+    public virtual Color whileActivatedColor {
+
+        get {
+
+            return _whileActivatedColor;
+
+        }
+
+        protected set {
+
+            _whileActivatedColor = value;
 
         }
 

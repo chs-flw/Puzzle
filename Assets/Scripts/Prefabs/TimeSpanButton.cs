@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class TimeSpanButton : AbstractButton {
 
-    [SerializeField,Range(1f,30f)]
-    private float activeTime;
+    [SerializeField,Range(1,30)]
+    private int activeTime;
 
     [SerializeField,ReadOnly]
     private bool _activated;
@@ -32,7 +32,7 @@ public class TimeSpanButton : AbstractButton {
 
     public override UnityEvent OnActivated {
 
-        protected get {
+        get {
 
             return _onActivated;
 
@@ -51,7 +51,7 @@ public class TimeSpanButton : AbstractButton {
 
     public override UnityEvent OnDeactivated { 
 
-        protected get {
+        get {
             
             return _onDeactivated;
 

@@ -55,6 +55,8 @@ public class CanvasInterface : MonoBehaviour {
 
         }
 
+        player = Camera.main.transform;
+
     }
     
     void Update() {

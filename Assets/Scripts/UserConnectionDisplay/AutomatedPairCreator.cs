@@ -5,6 +5,15 @@ using UnityEngine.Events;
 public class AutomatedPairCreator : MonoBehaviour {
 
     [SerializeField]
+    private bool countDownOverride;
+
+    [SerializeField,Range(1,30)]
+    private int timer = 5;
+
+    [SerializeField]
+    private AbstractActivator activator;
+
+    [SerializeField]
     private ConnectionType connectionType;
 
     private IMechanism[] _mechanisms;
@@ -56,7 +65,7 @@ public class AutomatedPairCreator : MonoBehaviour {
                                                                                                 );
 
 
-            if (explanationPrefab == null) return;
+            if (explanationPrefab == null) continue;
 
             Vector3 medianOfAnotherPair = (visualAspectOfAnotherPair.firstPosition + visualAspectOfAnotherPair.secondPosition)/2 + offset;
             Vector3 directionToBeParallelTo = visualAspectOfAnotherPair.secondPosition - visualAspectOfAnotherPair.firstPosition;
@@ -64,8 +73,17 @@ public class AutomatedPairCreator : MonoBehaviour {
             ExplanationBehaviour anotherExplanation = Instantiate(explanationPrefab, medianOfAnotherPair, Quaternion.identity);
 
             anotherExplanation.explanation = simpleExplanation;
+            
+            anotherExplanation.countDownOverride = countDownOverride;
+
+            anotherExplanation.onDeactivatedDefaultUpdate();
 
             anotherExplanation.holder.MakeParrallelTo(directionToBeParallelTo);
+
+
+            activator.OnActivated  .AddListener(anotherExplanation.onActivatedUpdate);
+            activator.OnActivated  .AddListener(() => anotherExplanation.whileActivatedUpdate(timer));
+            activator.OnDeactivated.AddListener(anotherExplanation.onDeactivatedDefaultUpdate);
 
         }
 
