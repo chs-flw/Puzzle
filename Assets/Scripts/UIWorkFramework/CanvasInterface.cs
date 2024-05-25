@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,13 +23,19 @@ public class CanvasInterface : MonoBehaviour {
     [SerializeField]
     private Vector3 upDirection = Vector3.up;
 
-    public void MakeParrallelTo(Vector3 _directionToBeParallelTo) {
+    private Vector3 normalizedDifference;
+    private float differenceLength;
+    private Vector3 start;
+    private Vector3 end;
+    private Vector3 offset;
+
+    private void MakeParrallelTo() {
 
 
-        Vector3 directionToBeParallelTo = _directionToBeParallelTo;         //.   upDirection we are looking for    .   .   .   .   .
+        Vector3 directionToBeParallelTo = normalizedDifference;             //.   upDirection we are looking for    .   .   .   .   .
                                                                             //. .   .   |   .   .  Vector3.up   .   .   .   .   .   .
                                                                             //. .   .   |   .   /   .   .   .   .   .   .   .   .   .
-        directionToBeParallelTo = directionToBeParallelTo.normalized;       //. .   .   |   .  / |  .   .   .   .   .   .   .   .   .
+                                                                            //. .   .   |   .  / |  .   .   .   .   .   .   .   .   .
                                                                             //. .   .   |   . / .   .   .   .   .   .   .   .   .   .
         directionToBeParallelTo *= Mathf.Sign(directionToBeParallelTo.y);   //. .   .   |   ./  .|  Vector3.up - a*DTBPT    .   .   .
                                                                             //. .   .   |   /   .   .   .   .   .   .   .   .   .   .
@@ -38,6 +45,23 @@ public class CanvasInterface : MonoBehaviour {
                                                                             //. .   .   .   .   alpha
         upDirection = (Vector3.up - alpha * directionToBeParallelTo).normalized;
 
+
+
+    }
+
+    public void SetFollowRangeAndMakeParallelTo(Vector3 _start, Vector3 _end, Vector3 offset) {
+
+        start = _start;
+        end   = _end;
+        normalizedDifference = (end - start).normalized;
+        this.offset = offset;
+
+        start = start + normalizedDifference;
+        end   = end   - normalizedDifference;
+
+        differenceLength = (end - start).magnitude;
+
+        MakeParrallelTo();
 
 
     }
@@ -62,6 +86,7 @@ public class CanvasInterface : MonoBehaviour {
     void Update() {
 
         transform.LookAt(player,upDirection);
+        transform.position = Vector3.Lerp(start,end, Mathf.Min(1f, Mathf.Max(0f, Vector3.Dot(normalizedDifference,player.position - start)/differenceLength))) + offset;
 
     }
 

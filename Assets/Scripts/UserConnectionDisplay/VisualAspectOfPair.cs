@@ -19,7 +19,7 @@ public class VisualAspectOfPair : MonoBehaviour {
 
 
     [SerializeField]
-    private ConnectionType _connectionType;
+    protected ConnectionType _connectionType;
 
     public ConnectionType connectionType {
 
@@ -29,7 +29,7 @@ public class VisualAspectOfPair : MonoBehaviour {
 
         }
 
-        private set {
+        protected set {
 
             _connectionType = value;
             UpdateColor();
@@ -43,16 +43,16 @@ public class VisualAspectOfPair : MonoBehaviour {
     [Header("Positions of connected objects and their deviation from origin points")]
 
     [SerializeField]
-    private GameObject firstObject;
+    protected GameObject firstObject;
 
     [SerializeField]
-    private Vector3 firstDeviation;
+    protected Vector3 firstDeviation;
 
     [SerializeField]
-    private GameObject secondObject;
+    protected GameObject secondObject;
 
     [SerializeField]
-    private Vector3 secondDeviation;
+    protected Vector3 secondDeviation;
 
 
 
@@ -64,10 +64,11 @@ public class VisualAspectOfPair : MonoBehaviour {
 
 
     [SerializeField]
-    private LineRenderer lineRenderer;
-    private Color lineColor;
+    protected LineRenderer lineRenderer;
+    [SerializeField]
+    protected Color lineColor;
 
-    public void UpdateColor() {
+    public virtual void UpdateColor() {
 
         switch(connectionType) {
 
@@ -87,7 +88,7 @@ public class VisualAspectOfPair : MonoBehaviour {
         lineRenderer.endColor = lineColor;
 
     }
-
+    /*
     public void ChangeState(GameObject caller, ConnectionType newType) {
 
         switch(connectionType) {
@@ -116,8 +117,8 @@ public class VisualAspectOfPair : MonoBehaviour {
         }
 
     }
-
-    private void Start() {
+    */
+    protected virtual void Start() {
 
         UpdateColor();
 
@@ -127,21 +128,22 @@ public class VisualAspectOfPair : MonoBehaviour {
 
     }
 
-    public static VisualAspectOfPair CreateVisualPair(  GameObject      handler,
+    public static T CreateVisualPair<T>(                GameObject      handler,
                                                         ConnectionType  connectionType,
                                                         GameObject      firstObject,
                                                         Vector3         firstDeviation,
                                                         GameObject      secondObject,
-                                                        Vector3         secondDeviation) {
+                                                        Vector3         secondDeviation 
+                                                        ) where T:VisualAspectOfPair {
 
         LineRenderer lineRenderer = handler.AddComponent<LineRenderer>();
         
         lineRenderer.material = MaterialDefaults.instance.defaultLineMaterial;
         
-        lineRenderer.startWidth = 0.021f;
-        lineRenderer.endWidth = 0.021f;
+        //lineRenderer.startWidth = 0.021f;
+        //lineRenderer.endWidth = 0.021f;
 
-        VisualAspectOfPair result = handler.AddComponent<VisualAspectOfPair>();
+        T result = handler.AddComponent<T>();
 
         result.lineRenderer = lineRenderer;
 

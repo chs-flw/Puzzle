@@ -5,6 +5,9 @@ using UnityEngine.Events;
 public class AutomatedPairCreator : MonoBehaviour {
 
     [SerializeField]
+    private bool raycastDependent = false;
+
+    [SerializeField]
     private bool countDownOverride;
 
     [SerializeField,Range(1,30)]
@@ -55,22 +58,31 @@ public class AutomatedPairCreator : MonoBehaviour {
         foreach(IMechanism mechanism in mechanisms) {
 
             GameObject anotherPair = new GameObject();
+
+            VisualAspectOfPair visualAspectOfAnotherPair;            
             
-            VisualAspectOfPair visualAspectOfAnotherPair = VisualAspectOfPair.CreateVisualPair( anotherPair,
-                                                                                                connectionType,
-                                                                                                gameObject,
-                                                                                                hostDeviation,
-                                                                                                mechanism.gameObject,
-                                                                                                connectedMechanismDeviation
-                                                                                                );
+            if (!raycastDependent)
+                visualAspectOfAnotherPair = VisualAspectOfPair.CreateVisualPair<VisualAspectOfPair>(anotherPair,
+                                                                                                    connectionType,
+                                                                                                    gameObject,
+                                                                                                    hostDeviation,
+                                                                                                    mechanism.gameObject,
+                                                                                                    connectedMechanismDeviation
+                                                                                                    );
+            else 
+                visualAspectOfAnotherPair = VisualAspectOfPair.CreateVisualPair<RaycastDependentAspectOfPair>(
+                    anotherPair,
+                    connectionType,
+                    gameObject,
+                    hostDeviation,
+                    mechanism.gameObject,
+                    connectedMechanismDeviation
+                );
 
 
             if (explanationPrefab == null) continue;
 
-            Vector3 medianOfAnotherPair = (visualAspectOfAnotherPair.firstPosition + visualAspectOfAnotherPair.secondPosition)/2 + offset;
-            Vector3 directionToBeParallelTo = visualAspectOfAnotherPair.secondPosition - visualAspectOfAnotherPair.firstPosition;
-
-            ExplanationBehaviour anotherExplanation = Instantiate(explanationPrefab, medianOfAnotherPair, Quaternion.identity);
+            ExplanationBehaviour anotherExplanation = Instantiate(explanationPrefab, Vector3.zero, Quaternion.identity);
 
             anotherExplanation.explanation = simpleExplanation;
             
@@ -78,7 +90,7 @@ public class AutomatedPairCreator : MonoBehaviour {
 
             anotherExplanation.onDeactivatedDefaultUpdate();
 
-            anotherExplanation.holder.MakeParrallelTo(directionToBeParallelTo);
+            anotherExplanation.holder.SetFollowRangeAndMakeParallelTo(visualAspectOfAnotherPair.firstPosition, visualAspectOfAnotherPair.secondPosition, offset);
 
 
             activator.OnActivated  .AddListener(anotherExplanation.onActivatedUpdate);

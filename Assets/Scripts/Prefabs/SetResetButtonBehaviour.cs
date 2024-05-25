@@ -81,7 +81,7 @@ public class SetResetButtonBehaviour : AbstractButton {
     
     }
 
-    private SetResetButtonBehaviour() {
+    protected SetResetButtonBehaviour() {
 
         _onActivated = new UnityEvent();
         _onDeactivated = new UnityEvent();
@@ -91,7 +91,7 @@ public class SetResetButtonBehaviour : AbstractButton {
         
     }
 
-    private IEnumerator PushAndRelease() {
+    protected virtual IEnumerator PushAndRelease() {
 
         animationController.SetBool("Pressed",true);
         running = true;
