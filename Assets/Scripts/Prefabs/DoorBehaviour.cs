@@ -1,17 +1,26 @@
 using UnityEngine;
 
-public class DoorBehaviour:MonoBehaviour,IMechanism {
+public class DoorBehaviour:BasicMechanism {
 
     [SerializeField]
     private Animator animationController;
 
-    public void DoMagic() {
+    [SerializeField]
+    private bool initialState = false;
+
+    private void Start() {
+
+        animationController.SetBool("Openned", initialState);
+
+    }
+
+    public override void DoMagic() {
 
         animationController.SetBool("Openned",true);
 
     }
 
-    public void UndoMagic() {
+    public override void UndoMagic() {
 
         animationController.SetBool("Openned",false);
 

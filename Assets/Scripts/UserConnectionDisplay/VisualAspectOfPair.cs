@@ -140,8 +140,8 @@ public class VisualAspectOfPair : MonoBehaviour {
         
         lineRenderer.material = MaterialDefaults.instance.defaultLineMaterial;
         
-        //lineRenderer.startWidth = 0.021f;
-        //lineRenderer.endWidth = 0.021f;
+        lineRenderer.startWidth = 0.021f;
+        lineRenderer.endWidth = 0.021f;
 
         T result = handler.AddComponent<T>();
 

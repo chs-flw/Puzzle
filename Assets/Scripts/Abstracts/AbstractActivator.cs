@@ -5,36 +5,72 @@ using UnityEngine.Events;
 
 public abstract class AbstractActivator : MonoBehaviour, IActivator {
 
-    [SerializeField]
-    private AutomatedPairCreator creator;
+    protected virtual void OnStart() {
 
-    private List<IMechanism> GiveAwayMechanism() {
+    }
 
-        List<IMechanism> mechanisms = new List<IMechanism>();
+    protected void Start() {
+        
+        OnStart();
 
-        for(int i = 0; i < OnActivated.GetPersistentEventCount(); i++) {
+    }
 
-            IMechanism mechanism = OnActivated.GetPersistentTarget(i) as IMechanism;
-            if (mechanism != null) mechanisms.Add(mechanism);
+    [ReadOnly,SerializeField]
+    private bool _activated;
+
+    public virtual bool Activated {
+        
+        get {
+
+            return _activated;
 
         }
 
-        return mechanisms;
+        protected set {
 
+            _activated = value;
+
+        }
+    
     }
 
-    protected void Awake() {
-        if (creator != null)
-            creator.mechanisms = GiveAwayMechanism().ToArray();
+    [SerializeField]
+    private UnityEvent _onActivated;
 
+    public virtual UnityEvent OnActivated { 
+        
+        get {
+
+            return _onActivated;
+
+        }
+        
+        set {
+
+            _onActivated = value;
+
+        }
+        
     }
 
-    public abstract bool Activated {
-        get; protected set;
-    }
+    [SerializeField]
+    private UnityEvent _onDeactivated;
 
-    public abstract UnityEvent OnActivated { get; set; }
-    public abstract UnityEvent OnDeactivated { get; set;}
+    public virtual UnityEvent OnDeactivated { 
+
+        get {
+
+            return _onDeactivated;
+
+        }
+        
+        set {
+
+            _onDeactivated = value;
+
+        }
+        
+    }
 
     public abstract void Activate();
 

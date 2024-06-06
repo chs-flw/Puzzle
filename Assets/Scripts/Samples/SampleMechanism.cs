@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-public class SampleMechanism : MonoBehaviour, IMechanism {
+public class SampleMechanism : BasicMechanism {
 
     Coroutine routine;
 
@@ -28,7 +28,7 @@ public class SampleMechanism : MonoBehaviour, IMechanism {
 
     }
 
-    public void DoMagic() {
+    public override void DoMagic() {
 
         if (routine != null) {
             StopCoroutine(routine);
@@ -37,7 +37,7 @@ public class SampleMechanism : MonoBehaviour, IMechanism {
 
     }
 
-    public void UndoMagic() {
+    public override void UndoMagic() {
 
         if (routine != null) {
             StopCoroutine(routine);

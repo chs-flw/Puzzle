@@ -4,64 +4,6 @@ using UnityEngine.Events;
 
 public class SetResetButtonBehaviour : AbstractButton {
 
-    [ReadOnly]
-    [SerializeField]
-    private bool _activated;
-
-    public override bool Activated {
-
-        get {
-
-            return _activated;
-
-        }  
-
-        protected set {
-            
-            _activated = value;
-
-        }
-        
-    }
-
-    [SerializeField]
-    private UnityEvent _onActivated;
-
-    public override UnityEvent OnActivated { 
-
-        get {
-            
-            return _onActivated;
-
-        }
-
-        set {
-
-            _onActivated = value;
-
-        }
-        
-    }
-
-    [SerializeField]
-    private UnityEvent _onDeactivated;
-
-    public override UnityEvent OnDeactivated { 
-        
-        get {
-            
-            return _onDeactivated;
-
-        }
-        
-        set {
-
-            _onDeactivated = value;
-
-        }
-        
-    }
-
     private Coroutine pushAndRelease;
     private bool running = false;
 
@@ -83,11 +25,11 @@ public class SetResetButtonBehaviour : AbstractButton {
 
     protected SetResetButtonBehaviour() {
 
-        _onActivated = new UnityEvent();
-        _onDeactivated = new UnityEvent();
+        OnActivated = new UnityEvent();
+        OnDeactivated = new UnityEvent();
 
-        _onActivated.AddListener(ChangeState);
-        _onDeactivated.AddListener(ChangeState);
+        OnActivated.AddListener(ChangeState);
+        OnDeactivated.AddListener(ChangeState);
         
     }
 

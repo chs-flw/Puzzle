@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BasicComplexMechanism : MonoBehaviour, IMechanism {
+public class BasicComplexMechanism : BasicMechanism {
     
     [SerializeField]
     [Range(0,5)]
     private int _AmountToActivate;
 
-    private int AmountToActivate {
+    protected int AmountToActivate {
 
         get {
 
@@ -17,7 +17,7 @@ public class BasicComplexMechanism : MonoBehaviour, IMechanism {
 
         }
 
-        set {
+        private set {
 
             if (value == 0) {
                 mechanize.Invoke();
@@ -37,13 +37,13 @@ public class BasicComplexMechanism : MonoBehaviour, IMechanism {
     [SerializeField]
     private UnityEvent unmechanize;
 
-    public void DoMagic() {
+    public override void DoMagic() {
 
         AmountToActivate--;
 
     }
 
-    public void UndoMagic() {
+    public override void UndoMagic() {
 
         AmountToActivate++;
 

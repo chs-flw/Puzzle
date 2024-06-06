@@ -1,25 +1,25 @@
 using UnityEngine;
 
-public class RaycastObstacle:MonoBehaviour,IMechanism {
+public class RaycastObstacle:BasicMechanism {
 
     [SerializeField]
     private Collider obstacle;
 
     private void EnableObstacle() {
-        obstacle.enabled = true;
+        obstacle.gameObject.SetActive(true);
         UpdateRaycast();
     }
 
-    public void DoMagic() {
+    public override void DoMagic() {
         EnableObstacle();
     }
 
     private void DisableObstacle() {
-        obstacle.enabled = false;
+        obstacle.gameObject.SetActive(false);
         UpdateRaycast();
     }
 
-    public void UndoMagic() {
+    public override void UndoMagic() {
         DisableObstacle();
     }
 
