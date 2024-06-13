@@ -13,17 +13,15 @@ public class RaycastObstacle:MonoBehaviour {
         SetObstacle();
 
     }
-
-    private void SetObstacle() {
-        obstacle.gameObject.SetActive(initialState);
-        UpdateRaycast();
-    }
-
     public void ChangeState() {
         initialState = !initialState;
         SetObstacle();
     }
-
+    private void SetObstacle() {
+        obstacle.gameObject.SetActive(initialState);
+        UpdateRaycast();
+    }
+    
     private void UpdateRaycast() {
 
         RaycastUpdater.instance.ChangeRaycastState();

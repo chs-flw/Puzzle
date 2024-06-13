@@ -5,10 +5,10 @@ using UnityEngine;
 public class RaycastDependentAspectOfPair : VisualAspectOfPair {
 
     private Color denied;
+
+    private Color lineColor;
     
     private float colorTransitionSpread;
-
-    Color lineColor;
 
     protected override void Start() {
 
