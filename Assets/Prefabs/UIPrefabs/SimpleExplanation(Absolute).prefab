@@ -195,9 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd7f43da395f3b488055cd5a8fc5e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explanationDisplay: {fileID: 4579520075551421171}
+  explanationDisplay: {fileID: 4579520075551421171}
   upDirection: {x: -0.406, y: 0.913, z: 0}
-  player: {fileID: 0}
 --- !u!114 &9221638040544438269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b79643a5167f148b1dbdc458baa7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countDownOverride: 0
-  _holder: {fileID: 4814166167533245985}
-  _explanation: {fileID: 0}
+  initialState: 0
+  holder: {fileID: 4814166167533245985}
+  explanation: {fileID: 0}

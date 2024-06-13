@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraRotation : MonoBehaviour{
-    
     [SerializeField]
     private float sensetivityY = 4f;
     [SerializeField]
@@ -20,13 +19,11 @@ public class CameraRotation : MonoBehaviour{
         transform.localRotation = Quaternion.Euler(mouseY, 0f, 0f);
 
     }
-
     void Start() {
 
         Cursor.lockState = CursorLockMode.Locked;
 
     }
-
     void Update() {
 
         Rotation();

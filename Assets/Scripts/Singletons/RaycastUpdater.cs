@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class RaycastUpdater : MonoBehaviour {
     
+    public const int ResponsiveLayer = 7;
+
     private static RaycastUpdater _instance;
 
     public static RaycastUpdater instance {

@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f22c160a1d89aa4892684d86de17aa3, type: 3}
   m_Name: Singular Use Explanation
   m_EditorClassIdentifier: 
-  _onDeactivatedExplanation: Off
-  _onDeactivatedColor: {r: 1, g: 0, b: 0, a: 1}
-  _onActivatedExplanation: Cannot deactivate
-  _onActivatedColor: {r: 0, g: 0, b: 1, a: 1}
-  _whileActivatedExplanation: 
-  _whileActivatedColor: {r: 0, g: 0, b: 0, a: 0}
+  onDeactivatedExplanation: OFF
+  onDeactivatedColor: {r: 1, g: 0, b: 0, a: 1}
+  onActivatedExplanation: Cannot deactivate
+  onActivatedColor: {r: 0, g: 0, b: 1, a: 1}

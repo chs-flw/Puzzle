@@ -1,26 +1,27 @@
 using UnityEngine;
 
-public class RaycastObstacle:BasicMechanism {
+public class RaycastObstacle:MonoBehaviour {
+
+    [SerializeField]
+    private bool initialState;
 
     [SerializeField]
     private Collider obstacle;
 
-    private void EnableObstacle() {
-        obstacle.gameObject.SetActive(true);
+    private void Start() {
+
+        SetObstacle();
+
+    }
+
+    private void SetObstacle() {
+        obstacle.gameObject.SetActive(initialState);
         UpdateRaycast();
     }
 
-    public override void DoMagic() {
-        EnableObstacle();
-    }
-
-    private void DisableObstacle() {
-        obstacle.gameObject.SetActive(false);
-        UpdateRaycast();
-    }
-
-    public override void UndoMagic() {
-        DisableObstacle();
+    public void ChangeState() {
+        initialState = !initialState;
+        SetObstacle();
     }
 
     private void UpdateRaycast() {

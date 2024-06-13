@@ -3,29 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionPart : MonoBehaviour {
-
     public const int InteractionLayer = 6;
-
-    [SerializeField]
-    private PlayerInfo playerInfo;
 
     [SerializeField]
     private float interactionDistance = 5f;
 
     void RaycastHandler(GameObject gameObject) {
 
-        IInteractable interactable = gameObject.GetComponent<IInteractable>();
+        BasicInteractable interactable = gameObject.GetComponent<BasicInteractable>();
         
         if (interactable != null) {
 
-            interactable.Interact(playerInfo);
+            interactable.Interact();
         
         }
 
     } 
-
-    
-
     void Update() {
 
         if (Input.GetKeyDown(KeyCode.E)) {
